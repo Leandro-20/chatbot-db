@@ -13,6 +13,11 @@ from db_api import (
     pedidos_por_cliente,
     resumen_ventas,
     obtener_politica,
+    agregar_producto,
+    actualizar_producto,
+    actualizar_stock,
+    desactivar_producto,
+    reactivar_producto,
 )
 
 OLLAMA_URL = "http://localhost:11434/api/chat"
@@ -170,6 +175,87 @@ TOOLS = [
                 "required": ["clave"]
             }
         }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "agregar_producto",
+            "description": "Crea un producto nuevo. Solo llamarla DESPUES de que el usuario confirme el resumen",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "nombre": {"type": "string", "description": "Nombre del producto"},
+                    "categoria": {"type": "string", "description": "Una de: computadoras, monitores, perifericos, audio, almacenamiento, impresoras, redes"},
+                    "precio": {"type": "number", "description": "Precio mayor a 0"},
+                    "descripcion": {"type": "string", "description": "Descripcion del producto"},
+                    "stock": {"type": "integer", "description": "Stock inicial (por defecto 0)"}
+                },
+                "required": ["nombre", "categoria", "precio", "descripcion"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "actualizar_producto",
+            "description": "Modifica datos de un producto existente. Solo llamarla DESPUES de confirmar",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "producto_id": {"type": "integer", "description": "ID del producto"},
+                    "nombre": {"type": "string", "description": "Nuevo nombre (opcional)"},
+                    "categoria": {"type": "string", "description": "Nueva categoria (opcional)"},
+                    "precio": {"type": "number", "description": "Nuevo precio mayor a 0 (opcional)"},
+                    "descripcion": {"type": "string", "description": "Nueva descripcion (opcional)"},
+                    "disponible": {"type": "boolean", "description": "Disponibilidad (opcional)"}
+                },
+                "required": ["producto_id"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "actualizar_stock",
+            "description": "Cambia el stock: fijar (valor final), sumar o restar unidades. Solo DESPUES de confirmar",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "producto_id": {"type": "integer", "description": "ID del producto"},
+                    "cantidad": {"type": "integer", "description": "Unidades"},
+                    "modo": {"type": "string", "description": "fijar, sumar o restar"}
+                },
+                "required": ["producto_id", "cantidad", "modo"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "desactivar_producto",
+            "description": "Desactiva un producto (baja logica, reversible, no borra datos). Solo DESPUES de confirmar",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "producto_id": {"type": "integer", "description": "ID del producto"}
+                },
+                "required": ["producto_id"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "reactivar_producto",
+            "description": "Reactiva un producto desactivado. Solo DESPUES de confirmar",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "producto_id": {"type": "integer", "description": "ID del producto"}
+                },
+                "required": ["producto_id"]
+            }
+        }
     }
 ]
 
@@ -184,6 +270,11 @@ TOOL_MAP = {
     "pedidos_por_cliente": pedidos_por_cliente,
     "resumen_ventas": resumen_ventas,
     "obtener_politica": obtener_politica,
+    "agregar_producto": agregar_producto,
+    "actualizar_producto": actualizar_producto,
+    "actualizar_stock": actualizar_stock,
+    "desactivar_producto": desactivar_producto,
+    "reactivar_producto": reactivar_producto,
 }
 
 

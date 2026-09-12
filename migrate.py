@@ -43,6 +43,7 @@ DROP TABLE IF EXISTS pedido_items;
 DROP TABLE IF EXISTS pedidos;
 DROP TABLE IF EXISTS productos;
 DROP TABLE IF EXISTS politicas;
+DROP TABLE IF EXISTS movimientos;
 
 CREATE TABLE productos (
     id INTEGER PRIMARY KEY,
@@ -79,6 +80,13 @@ CREATE TABLE politicas (
     clave TEXT PRIMARY KEY,
     titulo TEXT NOT NULL,
     contenido TEXT NOT NULL
+);
+
+CREATE TABLE movimientos (
+    id INTEGER PRIMARY KEY,
+    fecha TEXT NOT NULL DEFAULT (datetime('now', 'localtime')),
+    accion TEXT NOT NULL,
+    detalle TEXT NOT NULL
 );
 """
 

@@ -41,6 +41,25 @@ python3 test_db.py
 python3 migrate.py
 ```
 
+## Operaciones de escritura
+
+Toda escritura pide confirmacion: el bot muestra un RESUMEN,
+pregunta "¿Confirmas?" y solo ejecuta ante un si explicito.
+"No" o ambiguedad cancela sin escribir. Todo queda en auditoria
+(tabla `movimientos`).
+
+```bash
+python3 chat.py "Agrega el Parlante X200, audio, 59.99, parlante portatil, stock 20"
+# bot: muestra resumen y pide confirmacion -> responder "si"
+
+python3 chat.py "Suma 5 unidades al stock del producto 1"
+python3 chat.py "Desactiva el producto 11"   # baja logica, reversible
+python3 chat.py "Reactiva el producto 11"
+```
+
+Validaciones automaticas: precio > 0, stock resultante >= 0,
+categoria valida, sin nombres duplicados. Sin borrado fisico.
+
 ## Archivos
 
 | Archivo | Funcion |
@@ -49,9 +68,9 @@ python3 migrate.py
 | `migrate.py` | Crea tienda.db desde los JSON locales |
 | `productos.json` | Catalogo de productos (fuente de la DB) |
 | `pedidos.json` | Pedidos (fuente de la DB) |
-| `db_api.py` | 10 funciones de consulta contra SQLite |
-| `chat.py` | Chat con tool calling (10 tools) |
-| `test_db.py` | 8 tests automaticos |
+| `db_api.py` | 15 funciones contra SQLite (10 lectura + 5 escritura + auditoria) |
+| `chat.py` | Chat con tool calling (15 tools) |
+| `test_db.py` | 13 tests automaticos |
 | `tienda.db` | Base SQLite (generada, no se commitea) |
 
 ## Agregar datos
