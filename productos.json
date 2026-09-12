@@ -1,0 +1,112 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Laptop Pro X 15",
+      "categoria": "computadoras",
+      "precio": 1299.99,
+      "stock": 15,
+      "descripcion": "Laptop de 15 pulgadas, Intel i7, 16GB RAM, 512GB SSD",
+      "disponible": true
+    },
+    {
+      "id": 2,
+      "nombre": "Laptop Air 13",
+      "categoria": "computadoras",
+      "precio": 899.99,
+      "stock": 23,
+      "descripcion": "Laptop ultraligera de 13 pulgadas, Intel i5, 8GB RAM, 256GB SSD",
+      "disponible": true
+    },
+    {
+      "id": 3,
+      "nombre": "Monitor UltraWide 34",
+      "categoria": "monitores",
+      "precio": 549.99,
+      "stock": 8,
+      "descripcion": "Monitor curvo 34 pulgadas, 3440x1440, 144Hz",
+      "disponible": true
+    },
+    {
+      "id": 4,
+      "nombre": "Monitor Full HD 24",
+      "categoria": "monitores",
+      "precio": 189.99,
+      "stock": 45,
+      "descripcion": "Monitor 24 pulgadas, 1920x1080, 75Hz",
+      "disponible": true
+    },
+    {
+      "id": 5,
+      "nombre": "Teclado Mecanico RGB",
+      "categoria": "perifericos",
+      "precio": 79.99,
+      "stock": 60,
+      "descripcion": "Teclado mecanico con switches Cherry MX, retroiluminacion RGB",
+      "disponible": true
+    },
+    {
+      "id": 6,
+      "nombre": "Mouse Inalambrico Pro",
+      "categoria": "perifericos",
+      "precio": 49.99,
+      "stock": 0,
+      "descripcion": "Mouse inalambrico ergonomico, 16000 DPI, bateria recargable",
+      "disponible": false
+    },
+    {
+      "id": 7,
+      "nombre": "Auriculares Studio",
+      "categoria": "audio",
+      "precio": 199.99,
+      "stock": 12,
+      "descripcion": "Auriculares over-ear, cancelacion de ruido activa, 40h bateria",
+      "disponible": true
+    },
+    {
+      "id": 8,
+      "nombre": "Webcam HD 1080p",
+      "categoria": "perifericos",
+      "precio": 69.99,
+      "stock": 30,
+      "descripcion": "Webcam full HD con microfono integrado, foco automatico",
+      "disponible": true
+    },
+    {
+      "id": 9,
+      "nombre": "SSD 1TB NVMe",
+      "categoria": "almacenamiento",
+      "precio": 89.99,
+      "stock": 50,
+      "descripcion": "Disco SSD NVMe PCIe Gen4, 7000MB/s lectura",
+      "disponible": true
+    },
+    {
+      "id": 10,
+      "nombre": "Disco Duro Externo 2TB",
+      "categoria": "almacenamiento",
+      "precio": 64.99,
+      "stock": 35,
+      "descripcion": "Disco externo portatil USB 3.0, resistente a golpes",
+      "disponible": true
+    },
+    {
+      "id": 11,
+      "nombre": "Impresora Laser Color",
+      "categoria": "impresoras",
+      "precio": 349.99,
+      "stock": 7,
+      "descripcion": "Impresora laser a color, duplex automatico, WiFi",
+      "disponible": true
+    },
+    {
+      "id": 12,
+      "nombre": "Router WiFi 6",
+      "categoria": "redes",
+      "precio": 129.99,
+      "stock": 20,
+      "descripcion": "Router dual band WiFi 6, 3000Mbps, 4 antenas",
+      "disponible": true
+    }
+  ]
+}

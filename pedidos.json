@@ -1,0 +1,67 @@
+{
+  "pedidos": [
+    {
+      "id": "PED-001",
+      "cliente": "Juan Perez",
+      "email": "juan@email.com",
+      "productos": [
+        {"id": 1, "nombre": "Laptop Pro X 15", "cantidad": 1, "precio": 1299.99}
+      ],
+      "total": 1299.99,
+      "estado": "entregado",
+      "fecha_pedido": "2025-08-15",
+      "fecha_entrega": "2025-08-20"
+    },
+    {
+      "id": "PED-002",
+      "cliente": "Maria Garcia",
+      "email": "maria@email.com",
+      "productos": [
+        {"id": 5, "nombre": "Teclado Mecanico RGB", "cantidad": 2, "precio": 79.99},
+        {"id": 8, "nombre": "Webcam HD 1080p", "cantidad": 1, "precio": 69.99}
+      ],
+      "total": 229.97,
+      "estado": "enviado",
+      "fecha_pedido": "2025-09-01",
+      "fecha_envio": "2025-09-03",
+      "tracking": "TRK-789456123"
+    },
+    {
+      "id": "PED-003",
+      "cliente": "Carlos Lopez",
+      "email": "carlos@email.com",
+      "productos": [
+        {"id": 3, "nombre": "Monitor UltraWide 34", "cantidad": 1, "precio": 549.99}
+      ],
+      "total": 549.99,
+      "estado": "procesando",
+      "fecha_pedido": "2025-09-08"
+    },
+    {
+      "id": "PED-004",
+      "cliente": "Ana Martinez",
+      "email": "ana@email.com",
+      "productos": [
+        {"id": 7, "nombre": "Auriculares Studio", "cantidad": 1, "precio": 199.99},
+        {"id": 9, "nombre": "SSD 1TB NVMe", "cantidad": 2, "precio": 89.99}
+      ],
+      "total": 379.97,
+      "estado": "cancelado",
+      "fecha_pedido": "2025-09-05",
+      "motivo_cancelacion": "Cliente solicito cancelacion"
+    },
+    {
+      "id": "PED-005",
+      "cliente": "Juan Perez",
+      "email": "juan@email.com",
+      "productos": [
+        {"id": 12, "nombre": "Router WiFi 6", "cantidad": 1, "precio": 129.99},
+        {"id": 10, "nombre": "Disco Duro Externo 2TB", "cantidad": 1, "precio": 64.99}
+      ],
+      "total": 194.98,
+      "estado": "entregado",
+      "fecha_pedido": "2025-08-25",
+      "fecha_entrega": "2025-08-30"
+    }
+  ]
+}

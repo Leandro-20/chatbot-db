@@ -46,7 +46,9 @@ python3 migrate.py
 | Archivo | Funcion |
 |---------|---------|
 | `Modelfile` | Modelo chatbot-db con prompt + politicas |
-| `migrate.py` | Crea tienda.db desde los JSON de chatbot-ollama |
+| `migrate.py` | Crea tienda.db desde los JSON locales |
+| `productos.json` | Catalogo de productos (fuente de la DB) |
+| `pedidos.json` | Pedidos (fuente de la DB) |
 | `db_api.py` | 10 funciones de consulta contra SQLite |
 | `chat.py` | Chat con tool calling (10 tools) |
 | `test_db.py` | 8 tests automaticos |
@@ -54,6 +56,6 @@ python3 migrate.py
 
 ## Agregar datos
 
-- **Productos/pedidos**: cargalos en la DB (o actualiza los JSON origen y corre `migrate.py`)
+- **Productos/pedidos**: edita `productos.json` / `pedidos.json` y corre `migrate.py` (o cargalos directo en la DB)
 - **Politicas**: `INSERT INTO politicas` o edita `POLITICAS` en `migrate.py` y re-migra
 - **Prompt**: edita `Modelfile` y ejecuta `./build.sh`
