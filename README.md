@@ -70,7 +70,7 @@ categoria valida, sin nombres duplicados. Sin borrado fisico.
 | `pedidos.json` | Pedidos (fuente de la DB) |
 | `db_api.py` | 15 funciones contra SQLite (10 lectura + 5 escritura + auditoria) |
 | `chat.py` | Chat con tool calling (15 tools) |
-| `test_db.py` | 13 tests automaticos |
+| `test_db.py` | 14 tests automaticos |
 | `tienda.db` | Base SQLite (generada, no se commitea) |
 
 ## Agregar datos

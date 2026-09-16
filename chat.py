@@ -306,7 +306,8 @@ def chat(mensaje, historial=None):
         data = response.json()
         message = data["message"]
 
-        if "tool_calls" in message and message["tool_calls"]:
+        # Loop: repetir mientras el modelo pida tool calls (multinivel)
+        while "tool_calls" in message and message["tool_calls"]:
             historial.append(message)
 
             for tool_call in message["tool_calls"]:
@@ -328,9 +329,11 @@ def chat(mensaje, historial=None):
             response2 = requests.post(OLLAMA_URL, json=payload2, timeout=120)
             response2.raise_for_status()
             data2 = response2.json()
-            respuesta = data2["message"]["content"]
-        else:
-            respuesta = message["content"]
+            message = data2["message"]
+
+        respuesta = message.get("content") or ""
+        if not respuesta.strip():
+            print(f"  [AVISO: respuesta vacia del modelo. Ultimo mensaje: {json.dumps(message)[:300]}]")
 
         historial.append({"role": "assistant", "content": respuesta})
         return respuesta, historial

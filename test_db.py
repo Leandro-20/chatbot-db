@@ -163,6 +163,22 @@ def main():
         )
     )
 
+    # TEST 14: el "si" del turno 2 debe ejecutar la tool de verdad
+    # (no vale responder solo texto tipo "listo" sin escribir en la DB).
+    # Turno 1 debe ser solo resumen SIN tocar la DB.
+    test_doble_turno(
+        "Confirmacion ejecuta tool real (no solo texto)",
+        "Agrega el producto Teclado Mecanico K7, categoria perifericos, precio 79.99, "
+        "descripcion teclado mecanico retroiluminado, stock 12",
+        "si",
+        lambda r1, r2: (
+            (lambda p: p is not None and p["precio"] == 79.99 and p["stock"] == 12)
+            (hay_producto("Teclado Mecanico K7"))
+            and hay_auditoria("alta", "Teclado Mecanico K7")
+            and any(x in norm(r2) for x in ["id", "creado", "agregado", "registrado"])
+        )
+    )
+
     print("\n" + "=" * 50)
     pasaron = sum(resultados)
     total = len(resultados)
