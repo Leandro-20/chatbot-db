@@ -45,13 +45,17 @@ TOOLS = [
         "type": "function",
         "function": {
             "name": "productos_por_categoria",
-            "description": "Lista todos los productos de una categoria",
+            "description": "Lista productos de una categoria. Si el usuario pide un tipo especifico dentro de la categoria (ej: parlantes dentro de audio, teclados dentro de perifericos), pasa tambien el subtipo para filtrar",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "categoria": {
                         "type": "string",
                         "description": "Nombre de la categoria (ej: computadoras, monitores, perifericos, audio, almacenamiento, redes, impresoras)"
+                    },
+                    "subtipo": {
+                        "type": "string",
+                        "description": "Tipo dentro de la categoria (ej: parlante, auricular, teclado, mouse, laptop, monitor). Opcional"
                     }
                 },
                 "required": ["categoria"]
@@ -188,7 +192,8 @@ TOOLS = [
                     "categoria": {"type": "string", "description": "Una de: computadoras, monitores, perifericos, audio, almacenamiento, impresoras, redes"},
                     "precio": {"type": "number", "description": "Precio mayor a 0"},
                     "descripcion": {"type": "string", "description": "Descripcion del producto"},
-                    "stock": {"type": "integer", "description": "Stock inicial (por defecto 0)"}
+                    "stock": {"type": "integer", "description": "Stock inicial (por defecto 0)"},
+                    "subtipo": {"type": "string", "description": "Tipo dentro de la categoria (ej: parlante, auricular). Opcional"}
                 },
                 "required": ["nombre", "categoria", "precio", "descripcion"]
             }
@@ -207,7 +212,8 @@ TOOLS = [
                     "categoria": {"type": "string", "description": "Nueva categoria (opcional)"},
                     "precio": {"type": "number", "description": "Nuevo precio mayor a 0 (opcional)"},
                     "descripcion": {"type": "string", "description": "Nueva descripcion (opcional)"},
-                    "disponible": {"type": "boolean", "description": "Disponibilidad (opcional)"}
+                    "disponible": {"type": "boolean", "description": "Disponibilidad (opcional)"},
+                    "subtipo": {"type": "string", "description": "Nuevo subtipo (opcional)"}
                 },
                 "required": ["producto_id"]
             }

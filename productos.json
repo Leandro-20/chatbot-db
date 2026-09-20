@@ -7,7 +7,8 @@
       "precio": 1299.99,
       "stock": 15,
       "descripcion": "Laptop de 15 pulgadas, Intel i7, 16GB RAM, 512GB SSD",
-      "disponible": true
+      "disponible": true,
+      "subtipo": "laptop"
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "precio": 899.99,
       "stock": 23,
       "descripcion": "Laptop ultraligera de 13 pulgadas, Intel i5, 8GB RAM, 256GB SSD",
-      "disponible": true
+      "disponible": true,
+      "subtipo": "laptop"
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "precio": 549.99,
       "stock": 8,
       "descripcion": "Monitor curvo 34 pulgadas, 3440x1440, 144Hz",
-      "disponible": true
+      "disponible": true,
+      "subtipo": "monitor"
     },
     {
       "id": 4,
@@ -34,7 +37,8 @@
       "precio": 189.99,
       "stock": 45,
       "descripcion": "Monitor 24 pulgadas, 1920x1080, 75Hz",
-      "disponible": true
+      "disponible": true,
+      "subtipo": "monitor"
     },
     {
       "id": 5,
@@ -43,7 +47,8 @@
       "precio": 79.99,
       "stock": 60,
       "descripcion": "Teclado mecanico con switches Cherry MX, retroiluminacion RGB",
-      "disponible": true
+      "disponible": true,
+      "subtipo": "teclado"
     },
     {
       "id": 6,
@@ -52,7 +57,8 @@
       "precio": 49.99,
       "stock": 0,
       "descripcion": "Mouse inalambrico ergonomico, 16000 DPI, bateria recargable",
-      "disponible": false
+      "disponible": false,
+      "subtipo": "mouse"
     },
     {
       "id": 7,
@@ -61,7 +67,8 @@
       "precio": 199.99,
       "stock": 12,
       "descripcion": "Auriculares over-ear, cancelacion de ruido activa, 40h bateria",
-      "disponible": true
+      "disponible": true,
+      "subtipo": "auricular"
     },
     {
       "id": 8,
@@ -70,7 +77,8 @@
       "precio": 69.99,
       "stock": 30,
       "descripcion": "Webcam full HD con microfono integrado, foco automatico",
-      "disponible": true
+      "disponible": true,
+      "subtipo": "webcam"
     },
     {
       "id": 9,
@@ -79,7 +87,8 @@
       "precio": 89.99,
       "stock": 50,
       "descripcion": "Disco SSD NVMe PCIe Gen4, 7000MB/s lectura",
-      "disponible": true
+      "disponible": true,
+      "subtipo": "ssd"
     },
     {
       "id": 10,
@@ -88,7 +97,8 @@
       "precio": 64.99,
       "stock": 35,
       "descripcion": "Disco externo portatil USB 3.0, resistente a golpes",
-      "disponible": true
+      "disponible": true,
+      "subtipo": "disco_externo"
     },
     {
       "id": 11,
@@ -97,7 +107,8 @@
       "precio": 349.99,
       "stock": 7,
       "descripcion": "Impresora laser a color, duplex automatico, WiFi",
-      "disponible": true
+      "disponible": true,
+      "subtipo": "impresora_laser"
     },
     {
       "id": 12,
@@ -106,7 +117,8 @@
       "precio": 129.99,
       "stock": 20,
       "descripcion": "Router dual band WiFi 6, 3000Mbps, 4 antenas",
-      "disponible": true
+      "disponible": true,
+      "subtipo": "router"
     }
   ]
 }

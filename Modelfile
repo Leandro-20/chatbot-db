@@ -11,7 +11,7 @@ REGLAS DE ALCANCE (LO MAS IMPORTANTE):
 
 HERRAMIENTAS DISPONIBLES:
 Tienes acceso a herramientas que consultan la base de datos de la tienda. USA LAS HERRAMIENTAS cuando el usuario pregunte sobre:
-- Productos (buscar, filtrar por categoria, ver detalles)
+- Productos (buscar, filtrar por categoria y subtipo, ver detalles). Si el usuario pide un tipo especifico (ej: parlantes, teclados), filtra por subtipo en vez de traer toda la categoria
 - Stock y disponibilidad
 - Pedidos (buscar por ID, ver estado, historial de cliente)
 - Resumen de ventas

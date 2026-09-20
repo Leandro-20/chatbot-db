@@ -16,6 +16,7 @@ def _prod(row):
         "id": row["id"],
         "nombre": row["nombre"],
         "categoria": row["categoria"],
+        "subtipo": row["subtipo"],
         "precio": row["precio"],
         "stock": row["stock"],
         "descripcion": row["descripcion"],
@@ -37,18 +38,26 @@ def buscar_producto(nombre):
     return {"productos": resultados, "total": len(resultados)}
 
 
-def productos_por_categoria(categoria):
+def productos_por_categoria(categoria, subtipo=None):
     con = _con()
-    rows = con.execute(
-        "SELECT * FROM productos WHERE LOWER(categoria) LIKE ?",
-        (f"%{categoria.lower()}%",),
-    ).fetchall()
+    query = "SELECT * FROM productos WHERE LOWER(categoria) LIKE ?"
+    params = [f"%{categoria.lower()}%"]
+    if subtipo:
+        query += " AND LOWER(subtipo) LIKE ?"
+        params.append(f"%{subtipo.lower()}%")
+    rows = con.execute(query, params).fetchall()
     cats = [r["categoria"] for r in con.execute("SELECT DISTINCT categoria FROM productos").fetchall()]
+    subs = [r["subtipo"] for r in con.execute(
+        "SELECT DISTINCT subtipo FROM productos WHERE LOWER(categoria) LIKE ?",
+        (f"%{categoria.lower()}%",)).fetchall()]
     con.close()
     resultados = [_prod(r) for r in rows]
     if not resultados:
-        return {"error": f"No hay productos en '{categoria}'", "categorias_disponibles": sorted(set(cats))}
-    return {"productos": resultados, "total": len(resultados), "categoria": categoria}
+        return {"error": f"No hay productos en '{categoria}'" + (f" con subtipo '{subtipo}'" if subtipo else ""),
+                "categorias_disponibles": sorted(set(cats)),
+                "subtipos_en_categoria": sorted(set(s for s in subs if s))}
+    return {"productos": resultados, "total": len(resultados), "categoria": categoria,
+            "subtipo": subtipo}
 
 
 def obtener_producto(producto_id):
@@ -187,10 +196,12 @@ def _validar_producto(nombre, categoria, precio, descripcion, stock=0):
     return None
 
 
-def agregar_producto(nombre, categoria, precio, descripcion, stock=0):
+def agregar_producto(nombre, categoria, precio, descripcion, stock=0, subtipo=None):
     error = _validar_producto(nombre, categoria, precio, descripcion, stock)
     if error:
         return {"error": error}
+    if subtipo is not None and not subtipo.strip():
+        return {"error": "El subtipo no puede estar vacio"}
     con = _con()
     dup = con.execute("SELECT id FROM productos WHERE LOWER(nombre) = ?",
                       (nombre.strip().lower(),)).fetchone()
@@ -198,10 +209,11 @@ def agregar_producto(nombre, categoria, precio, descripcion, stock=0):
         con.close()
         return {"error": f"Ya existe un producto con ese nombre (ID {dup['id']})"}
     cur = con.execute(
-        "INSERT INTO productos (nombre, categoria, precio, stock, descripcion, disponible)"
-        " VALUES (?,?,?,?,?,?)",
-        (nombre.strip(), categoria.strip().lower(), float(precio),
-         int(stock), descripcion.strip(), 1 if int(stock) > 0 else 0),
+        "INSERT INTO productos (nombre, categoria, subtipo, precio, stock, descripcion, disponible)"
+        " VALUES (?,?,?,?,?,?,?)",
+        (nombre.strip(), categoria.strip().lower(),
+         subtipo.strip().lower() if subtipo else None,
+         float(precio), int(stock), descripcion.strip(), 1 if int(stock) > 0 else 0),
     )
     nuevo_id = cur.lastrowid
     _log(con, "alta", f"Producto {nuevo_id} '{nombre.strip()}' creado")
@@ -212,7 +224,7 @@ def agregar_producto(nombre, categoria, precio, descripcion, stock=0):
 
 
 def actualizar_producto(producto_id, nombre=None, categoria=None, precio=None,
-                        descripcion=None, disponible=None):
+                        descripcion=None, disponible=None, subtipo=None):
     con = _con()
     row = con.execute("SELECT * FROM productos WHERE id = ?", (producto_id,)).fetchone()
     if row is None:
@@ -256,6 +268,12 @@ def actualizar_producto(producto_id, nombre=None, categoria=None, precio=None,
         cambios["descripcion"] = descripcion
     if disponible is not None:
         cambios["disponible"] = 1 if disponible else 0
+    if subtipo is not None:
+        subtipo = subtipo.strip().lower()
+        if not subtipo:
+            con.close()
+            return {"error": "El subtipo no puede estar vacio"}
+        cambios["subtipo"] = subtipo
     if not cambios:
         con.close()
         return {"error": "No indicaste ningun campo a modificar"}

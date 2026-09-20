@@ -49,6 +49,7 @@ CREATE TABLE productos (
     id INTEGER PRIMARY KEY,
     nombre TEXT NOT NULL,
     categoria TEXT NOT NULL,
+    subtipo TEXT,
     precio REAL NOT NULL,
     stock INTEGER NOT NULL,
     descripcion TEXT NOT NULL,
@@ -105,9 +106,9 @@ def main():
 
     for p in productos:
         cur.execute(
-            "INSERT INTO productos VALUES (?,?,?,?,?,?,?)",
-            (p["id"], p["nombre"], p["categoria"], p["precio"],
-             p["stock"], p["descripcion"], int(p["disponible"])),
+            "INSERT INTO productos VALUES (?,?,?,?,?,?,?,?)",
+            (p["id"], p["nombre"], p["categoria"], p.get("subtipo"),
+             p["precio"], p["stock"], p["descripcion"], int(p["disponible"])),
         )
 
     for p in pedidos:

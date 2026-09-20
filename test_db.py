@@ -179,6 +179,15 @@ def main():
         )
     )
 
+    # TEST 15: filtro por subtipo — pedir "teclados" no debe traer
+    # mouse ni webcam (misma categoria, distinto subtipo).
+    test(
+        "Subtipo: teclados sin mouse ni webcam",
+        "Mostrame todos los teclados",
+        lambda r: "teclado" in norm(r)
+        and "mouse" not in norm(r) and "webcam" not in norm(r)
+    )
+
     print("\n" + "=" * 50)
     pasaron = sum(resultados)
     total = len(resultados)
